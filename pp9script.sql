@@ -1,6 +1,16 @@
 /*Select all data contained in the BOOKs table */
-SELECT * FROM TABLE BOOKS;
+SELECT * FROM BOOKS;
 
-/*Create a list containing publisher name, contact person, publisher phone */
+/* Listing publisher name, Contact Person, publisher phone */
+SELECT name, contact AS "Contact Person", phone 
+	FROM PUBLISHER;
 
-SELECT pubName, contact AS "Contact Person";
+/* Every customer that has placed an order with book store */
+SELECT DISTINCT Customer# FROM ORDERS;
+
+/* Advanced Challenge */
+SELECT Lastname ||", "|| Firstname AS "Name",
+	City || ", " || State AS "Location"
+	FROM CUSTOMERS;
+	
+	
