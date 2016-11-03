@@ -1,0 +1,63 @@
+
+
+/* Created the CUSTOMER data table */
+CREATE TABLE CUSTOMER
+(
+	CustNo VARCHAR2(10)
+	FName VARCHAR2(25),
+	LName VARCHAR2(25),
+	Address VARCHAR(15),
+	City VARCHAR2(40),
+	State VARCHAR2(2),
+	Zip VARCHAR2(5),
+	Phone VARCHAR2(10),
+		CONSTRAINT CUSOTER_CustNo_pk PRIMARY KEY (CustNo),
+		CONSTRAINT CUSTOMER_state_leng CHECK(State.length = 2)
+);
+
+/*Created the VEHICLE data table */
+CREATE TABLE VEHICLE
+(
+	SerialNo VARCHAR2(10),
+	CustNo VARCHAR2(10) NOT NULL,
+	Year NUMBER(4, 0),
+	Model VARCHAR2(25),
+	LicenseNo VARCHAR2(6),
+	State VARCHAR2(2),
+	Cylinder NUMBER(1, 0),
+	Make VARCHAR2(20),
+		CONSTRAINT VEHICLE_SerialNo_pk PRIMARY KEY (SerialNo),
+		CONSTRAINT CUSTOMER_CustNo_fk FOREIGN KEY (CustNo)
+			REFERENCES CUSTOMER(CustNo)
+);
+
+/* Created the REPAIRORDER data table */
+CREATE TABLE REPAIRORDER
+(
+	RepOrdNo VARCHAR2(10),
+	SerialNo VARCHAR2(10),
+		CONSTANT REPAIRORDER_RepOrdNo_pk PRIMARY KEY (RepOrdNo),
+		CONSTANT VEHICLE_SerialNo_fk FOREIGN KEY (SerialNo)
+			REFERENCES VEHICLE (SerialNo)
+);
+
+/* Created the PARTSUSED data table */
+CREATE TABLE PARTSUSED
+(
+	RepOrdNo VARCHAR2(10),
+	PartNo VARCHAR2(10),
+	QtyUsed NUMBER(12, 0),
+		CONSTRAINT PARTSUSED_PartNo_pk PRIMARY KEY (PartNo),
+		CONSTRAINT REPAIRORDER_RepOrdNo_fk FOREIGN KEY (RepOrdNo)
+			REFERENCES REPAIRORDER (RepOrdNo)
+);
+/* Created the Part data table*/
+CREATE TABLE PART
+(
+	PartNo VARCHAR2(10),
+	PartDesc VARCHAR2(40),
+	UnitsInStock NUMBER(12, 0),
+	UnitPrice NUMBER(15, 2),
+	UnitSize VARCHAR2(3, 2)
+		CONSTRAINT PART_PartNo
+);
