@@ -1,3 +1,4 @@
+/* IT 378 Project Phase 2 */
 
 /* Create Table Commands */
 
@@ -16,7 +17,7 @@ CREATE TABLE CUSTOMERS1
 		CONSTRAINT CUSTOMERS1_AddrState_leng CHECK(length(AddrAddrState) = 2)
 );
 
-/*Create the VEHICLES1 data table */
+/* Create the VEHICLES1 data table */
 CREATE TABLE VEHICLES1
 (
 	SerialNo VARCHAR2(10),
