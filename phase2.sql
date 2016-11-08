@@ -1,9 +1,9 @@
 
 
-/* Created the CUSTOMER data table */
-CREATE TABLE CUSTOMER
+/* Create the CUSTOMER data table */
+CREATE TABLE CUSTOMER1
 (
-	CustNo VARCHAR2(10)
+	CustNo VARCHAR2(10),
 	FName VARCHAR2(25),
 	LName VARCHAR2(25),
 	Address VARCHAR(15),
@@ -15,8 +15,8 @@ CREATE TABLE CUSTOMER
 		CONSTRAINT CUSTOMER_state_leng CHECK(State.length = 2)
 );
 
-/*Created the VEHICLE data table */
-CREATE TABLE VEHICLE
+/*Create the VEHICLE data table */
+CREATE TABLE VEHICLE1
 (
 	SerialNo VARCHAR2(10),
 	CustNo VARCHAR2(10) NOT NULL,
@@ -31,8 +31,8 @@ CREATE TABLE VEHICLE
 			REFERENCES CUSTOMER(CustNo)
 );
 
-/* Created the REPAIRORDER data table */
-CREATE TABLE REPAIRORDER
+/* Create the REPAIRORDER data table */
+CREATE TABLE REPAIRORDER1
 (
 	RepOrdNo VARCHAR2(10),
 	SerialNo VARCHAR2(10),
@@ -41,8 +41,8 @@ CREATE TABLE REPAIRORDER
 			REFERENCES VEHICLE (SerialNo)
 );
 
-/* Created the PARTSUSED data table */
-CREATE TABLE PARTSUSED
+/* Create the PARTSUSED data table */
+CREATE TABLE PARTSUSED1
 (
 	RepOrdNo VARCHAR2(10),
 	PartNo VARCHAR2(10),
@@ -51,8 +51,8 @@ CREATE TABLE PARTSUSED
 		CONSTRAINT REPAIRORDER_RepOrdNo_fk FOREIGN KEY (RepOrdNo)
 			REFERENCES REPAIRORDER (RepOrdNo)
 );
-/* Created the Part data table*/
-CREATE TABLE PART
+/* Create the Part data table*/
+CREATE TABLE PART1
 (
 	PartNo VARCHAR2(10),
 	PartDesc VARCHAR2(40),
