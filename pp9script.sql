@@ -12,3 +12,14 @@ SELECT DISTINCT Customer# FROM ORDERS;
 SELECT Lastname ||', '|| Firstname AS "Name",
 	City || ', ' || State AS "Location"
 	FROM CUSTOMERS;
+
+SELECT title AS "Title",
+	(retail - cost) / cost * 100 AS "Profit %"
+	FROM BOOKS;
+	
+/* CH8 */
+SELECT title AS "Title" FROM BOOKS
+	WHERE category NOT = 'fit';
+
+	
+	
