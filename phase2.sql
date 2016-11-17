@@ -6,8 +6,8 @@
 CREATE TABLE CUSTOMERS1
 (
 	CustNo NUMBER(10),
-	FirstName VARCHAR2(25) NOT NULL,
-	LastName VARCHAR2(25) NOT NULL,
+	FirstName VARCHAR2(25),
+	LastName VARCHAR2(25),
 	Address VARCHAR2(100),
 	City VARCHAR2(45),
 	addrState VARCHAR2(2),
@@ -51,7 +51,8 @@ CREATE TABLE PARTSUSED1
 	OrdNo VARCHAR2(10),
 	PartNo VARCHAR2(10),
 	QtyUsed VARCHAR2(3),
-		CONSTRAINT PARTSUSED1_PartNo_pk PRIMARY KEY (PartNo),
+		CONSTRAINT PARTSUSED1_PartNo_fk FOREIGN KEY (PartNo)
+			REFERENCES PARTS1 (PartNo),
 		CONSTRAINT REPAIRORDERS1_OrdNo_fk FOREIGN KEY (OrdNo)
 			REFERENCES REPAIRORDERS1 (OrdNo)
 );
@@ -63,7 +64,7 @@ CREATE TABLE PARTS1
 	PartDesc VARCHAR2(40),
 	UnitsInStock VARCHAR2(12),
 	UnitPrice NUMBER(15, 2),
-	UnitSize VARCHAR2(3),
+	UnitSize VARCHAR2(10),
 		CONSTRAINT PART1_PartNo PRIMARY KEY (PartNo)
 );
 
@@ -154,111 +155,111 @@ INSERT INTO VEHICLES1(SerialNo,Year,Make,Model,LicenseNo,AddrState,Cylinder,Cust
 	
 /* Insert data into PARTS1 Table */
 INSERT INTO PARTS1(PartNo,PartDesc,UnitsInStock,UnitPrice,UnitSize) 
-	VALUES (1,'10W-40 oil',145,'$1.00','quart');
+	VALUES (1,'10W-40 oil',145,'1.00','quart');
 INSERT INTO PARTS1(PartNo,PartDesc,UnitsInStock,UnitPrice,UnitSize) 
-	VALUES (2,'oil filter',14,'$2.00','item');
+	VALUES (2,'oil filter',14,'2.00','item');
 INSERT INTO PARTS1(PartNo,PartDesc,UnitsInStock,UnitPrice,UnitSize) 
-	VALUES (3,'Antifreeze',10,'$3.95','quart');
+	VALUES (3,'Antifreeze',10,'3.95','quart');
 INSERT INTO PARTS1(PartNo,PartDesc,UnitsInStock,UnitPrice,UnitSize) 
-	VALUES (4,'Spark Plugs',45,'$0.99','item');
+	VALUES (4,'Spark Plugs',45,'0.99','item');
 INSERT INTO PARTS1(PartNo,PartDesc,UnitsInStock,UnitPrice,UnitSize) 
-	VALUES (5,'Transmission Fluid',15,'$1.50','quart');
+	VALUES (5,'Transmission Fluid',15,'1.50','quart');
 INSERT INTO PARTS1(PartNo,PartDesc,UnitsInStock,UnitPrice,UnitSize) 
-	VALUES (6,'10W-30 oil',95,'$0.95','quart');
+	VALUES (6,'10W-30 oil',95,'0.95','quart');
 INSERT INTO PARTS1(PartNo,PartDesc,UnitsInStock,UnitPrice,UnitSize) 
-	VALUES (7,'Brake Lining',25,'$5.00','quart');
+	VALUES (7,'Brake Lining',25,'5.00','quart');
 INSERT INTO PARTS1(PartNo,PartDesc,UnitsInStock,UnitPrice,UnitSize) 
-	VALUES (8,'Shock',75,'$6.00','item');
+	VALUES (8,'Shock',75,'6.00','item');
 INSERT INTO PARTS1(PartNo,PartDesc,UnitsInStock,UnitPrice,UnitSize) 
-	VALUES (9,'Muffler',10,'$15.00','item');
+	VALUES (9,'Muffler',10,'15.00','item');
 INSERT INTO PARTS1(PartNo,PartDesc,UnitsInStock,UnitPrice,UnitSize) 
-	VALUES (10,'Tail Pipe',85,'$4.00','item');
+	VALUES (10,'Tail Pipe',85,'4.00','item');
 INSERT INTO PARTS1(PartNo,PartDesc,UnitsInStock,UnitPrice,UnitSize) 
-	VALUES (11,'Head Gasket',32,'$9.00','dozen');
+	VALUES (11,'Head Gasket',32,'9.00','dozen');
 INSERT INTO PARTS1(PartNo,PartDesc,UnitsInStock,UnitPrice,UnitSize) 
-	VALUES (12,'Timing Chain',6,'$22.50','item');
+	VALUES (12,'Timing Chain',6,'22.50','item');
 INSERT INTO PARTS1(PartNo,PartDesc,UnitsInStock,UnitPrice,UnitSize) 
-	VALUES (13,'Battery',13,'$55.00','item');
+	VALUES (13,'Battery',13,'55.00','item');
 INSERT INTO PARTS1(PartNo,PartDesc,UnitsInStock,UnitPrice,UnitSize) 
-	VALUES (14,'Radiator',3,'$60.00','item');
+	VALUES (14,'Radiator',3,'60.00','item');
 INSERT INTO PARTS1(PartNo,PartDesc,UnitsInStock,UnitPrice,UnitSize) 
-	VALUES (15,'Radiator Hose',24,'$3.00','dozen');
+	VALUES (15,'Radiator Hose',24,'3.00','dozen');
 INSERT INTO PARTS1(PartNo,PartDesc,UnitsInStock,UnitPrice,UnitSize) 
-	VALUES (16,'Rotor',4,'$16.00','item');
+	VALUES (16,'Rotor',4,'16.00','item');
 INSERT INTO PARTS1(PartNo,PartDesc,UnitsInStock,UnitPrice,UnitSize) 
-	VALUES (17,'Tire',36,'$46.00','item');
+	VALUES (17,'Tire',36,'46.00','item');
 INSERT INTO PARTS1(PartNo,PartDesc,UnitsInStock,UnitPrice,UnitSize) 
-	VALUES (18,'Headlight',6,'$5.00','case');
+	VALUES (18,'Headlight',6,'5.00','case');
 INSERT INTO PARTS1(PartNo,PartDesc,UnitsInStock,UnitPrice,UnitSize) 
-	VALUES (19,'Tail Light',7,'$3.00','dozen');
+	VALUES (19,'Tail Light',7,'3.00','dozen');
 INSERT INTO PARTS1(PartNo,PartDesc,UnitsInStock,UnitPrice,UnitSize) 
-	VALUES (20,'Gearbox',2,'$25.00','item');
+	VALUES (20,'Gearbox',2,'25.00','item');
 	
 /* Insert data into REPAIRORDERS1 */
-INSERT INTO REPAIRORDERS1(OrdNo,Odometer,Date,SerialNo) 
-	VALUES (1,50000,'10/5/2005','AZXS230I87');
-INSERT INTO REPAIRORDERS1(OrdNo,Odometer,Date,SerialNo) 
-	VALUES (2,30000,'10/5/2005','IOMEQ54397');
-INSERT INTO REPAIRORDERS1(OrdNo,Odometer,Date,SerialNo) 
-	VALUES (3,6000,'10/7/2005','JKLP7IIIJF');
-INSERT INTO REPAIRORDERS1(OrdNo,Odometer,Date,SerialNo) 
-	VALUES (4,75000,'10/8/2005','AZXS230I87');
-INSERT INTO REPAIRORDERS1(OrdNo,Odometer,Date,SerialNo) 
-	VALUES (5,15000,'10/10/2005','TYYYI87590');
-INSERT INTO REPAIRORDERS1(OrdNo,Odometer,Date,SerialNo) 
-	VALUES (6,55000,'10/10/2005','BHGY08631Q');
-INSERT INTO REPAIRORDERS1(OrdNo,Odometer,Date,SerialNo) 
-	VALUES (7,25500,'10/11/2005','V121BHD481');
-INSERT INTO REPAIRORDERS1(OrdNo,Odometer,Date,SerialNo) 
-	VALUES (8,125000,'10/12/2005','PLJFVC5609');
-INSERT INTO REPAIRORDERS1(OrdNo,Odometer,Date,SerialNo) 
-	VALUES (9,60800,'10/15/2005','XCVY760PIQ');
-INSERT INTO REPAIRORDERS1(OrdNo,Odometer,Date,SerialNo) 
-	VALUES (10,11000,'10/16/2005','THYDF55639');
-INSERT INTO REPAIRORDERS1(OrdNo,Odometer,Date,SerialNo) 
-	VALUES (11,55060,'10/18/2005','MNMJ7H6098');
-INSERT INTO REPAIRORDERS1(OrdNo,Odometer,Date,SerialNo) 
-	VALUES (12,25600,'10/20/2005','THYDF55639');
-INSERT INTO REPAIRORDERS1(OrdNo,Odometer,Date,SerialNo) 
-	VALUES (13,56000,'10/20/2005','QWER9LK982');
-INSERT INTO REPAIRORDERS1(OrdNo,Odometer,Date,SerialNo) 
-	VALUES (14,22000,'10/22/2005','QWER9LK982');
-INSERT INTO REPAIRORDERS1(OrdNo,Odometer,Date,SerialNo) 
-	VALUES (15,14800,'10/25/2005','JKLP7IIIJF');
-INSERT INTO REPAIRORDERS1(OrdNo,Odometer,Date,SerialNo) 
-	VALUES (16,46000,'10/25/2005','THYDF55639');
-INSERT INTO REPAIRORDERS1(OrdNo,Odometer,Date,SerialNo) 
-	VALUES (17,71500,'10/30/2005','MNMJ7H6098');
-INSERT INTO REPAIRORDERS1(OrdNo,Odometer,Date,SerialNo) 
-	VALUES (18,15800,'11/1/2005','MVMN8974PP');
-INSERT INTO REPAIRORDERS1(OrdNo,Odometer,Date,SerialNo) 
-	VALUES (19,28525,'11/2/2005','POIU980PLL');
-INSERT INTO REPAIRORDERS1(OrdNo,Odometer,Date,SerialNo) 
-	VALUES (20,32560,'11/2/2005','QWSA870976');
-INSERT INTO REPAIRORDERS1(OrdNo,Odometer,Date,SerialNo) 
-	VALUES (21,72700,'11/5/2005','IOMEQ54397');
-INSERT INTO REPAIRORDERS1(OrdNo,Odometer,Date,SerialNo) 
-	VALUES (22,18900,'11/8/2005','POOL98T90P');
-INSERT INTO REPAIRORDERS1(OrdNo,Odometer,Date,SerialNo) 
-	VALUES (23,46590,'11/8/2005','SWQW345RT6');
-INSERT INTO REPAIRORDERS1(OrdNo,Odometer,Date,SerialNo) 
-	VALUES (24,34800,'11/12/2005','TGVYY76R43');
-INSERT INTO REPAIRORDERS1(OrdNo,Odometer,Date,SerialNo) 
-	VALUES (25,61800,'11/15/2005','JHMEC3348H');
-INSERT INTO REPAIRORDERS1(OrdNo,Odometer,Date,SerialNo) 
-	VALUES (26,55000,'11/20/2005','V121BHD481');
-INSERT INTO REPAIRORDERS1(OrdNo,Odometer,Date,SerialNo) 
-	VALUES (27,30800,'11/22/2005','WWQAA452P0');
-INSERT INTO REPAIRORDERS1(OrdNo,Odometer,Date,SerialNo) 
-	VALUES (28,17600,'11/22/2005','XCVY760PIQ');
-INSERT INTO REPAIRORDERS1(OrdNo,Odometer,Date,SerialNo) 
-	VALUES (29,20600,'11/25/2005','AZXS230I87');
-INSERT INTO REPAIRORDERS1(OrdNo,Odometer,Date,SerialNo) 
-	VALUES (30,22590,'11/27/2005','BHGY08631Q');
-INSERT INTO REPAIRORDERS1(OrdNo,Odometer,Date,SerialNo) 
-	VALUES (31,23000,'2/3/2006','BHGY08631Q');
-INSERT INTO REPAIRORDERS1(OrdNo,Odometer,Date,SerialNo) 
-	VALUES (32,15000,'12/1/2005','BHGY08631Q');
+INSERT INTO REPAIRORDERS1(OrdNo,Odometer,reporddate,SerialNo) 
+	VALUES (1,50000,TO_DATE('10/5/2005','MM-DD-YYYY' ),'AZXS230I87');
+INSERT INTO REPAIRORDERS1(OrdNo,Odometer,reporddate,SerialNo) 
+	VALUES (2,30000,TO_DATE('10/5/2005','MM-DD-YYYY' ),'IOMEQ54397');
+INSERT INTO REPAIRORDERS1(OrdNo,Odometer,reporddate,SerialNo) 
+	VALUES (3,6000,TO_DATE('10/7/2005','MM-DD-YYYY' ),'JKLP7IIIJF');
+INSERT INTO REPAIRORDERS1(OrdNo,Odometer,reporddate,SerialNo) 
+	VALUES (4,75000,TO_DATE('10/8/2005','MM-DD-YYYY' ),'AZXS230I87');
+INSERT INTO REPAIRORDERS1(OrdNo,Odometer,reporddate,SerialNo) 
+	VALUES (5,15000,TO_DATE('10/10/2005','MM-DD-YYYY' ),'TYYYI87590');
+INSERT INTO REPAIRORDERS1(OrdNo,Odometer,reporddate,SerialNo) 
+	VALUES (6,55000,TO_DATE('10/10/2005','MM-DD-YYYY' ),'BHGY08631Q');
+INSERT INTO REPAIRORDERS1(OrdNo,Odometer,reporddate,SerialNo) 
+	VALUES (7,25500,TO_DATE('10/11/2005','MM-DD-YYYY' ),'V121BHD481');
+INSERT INTO REPAIRORDERS1(OrdNo,Odometer,reporddate,SerialNo) 
+	VALUES (8,125000,TO_DATE('10/12/2005','MM-DD-YYYY' ),'PLJFVC5609');
+INSERT INTO REPAIRORDERS1(OrdNo,Odometer,reporddate,SerialNo) 
+	VALUES (9,60800,TO_DATE('10/15/2005','MM-DD-YYYY' ),'XCVY760PIQ');
+INSERT INTO REPAIRORDERS1(OrdNo,Odometer,reporddate,SerialNo) 
+	VALUES (10,11000,TO_DATE('10/16/2005','MM-DD-YYYY' ),'THYDF55639');
+INSERT INTO REPAIRORDERS1(OrdNo,Odometer,reporddate,SerialNo) 
+	VALUES (11,55060,TO_DATE('10/18/2005','MM-DD-YYYY' ),'MNMJ7H6098');
+INSERT INTO REPAIRORDERS1(OrdNo,Odometer,reporddate,SerialNo) 
+	VALUES (12,25600,TO_DATE('10/20/2005','MM-DD-YYYY' ),'THYDF55639');
+INSERT INTO REPAIRORDERS1(OrdNo,Odometer,reporddate,SerialNo) 
+	VALUES (13,56000,TO_DATE('10/20/2005','MM-DD-YYYY' ),'QWER9LK982');
+INSERT INTO REPAIRORDERS1(OrdNo,Odometer,reporddate,SerialNo) 
+	VALUES (14,22000,TO_DATE('10/22/2005','MM-DD-YYYY' ),'QWER9LK982');
+INSERT INTO REPAIRORDERS1(OrdNo,Odometer,reporddate,SerialNo) 
+	VALUES (15,14800,TO_DATE('10/25/2005','MM-DD-YYYY' ),'JKLP7IIIJF');
+INSERT INTO REPAIRORDERS1(OrdNo,Odometer,reporddate,SerialNo) 
+	VALUES (16,46000,TO_DATE('10/25/2005','MM-DD-YYYY' ),'THYDF55639');
+INSERT INTO REPAIRORDERS1(OrdNo,Odometer,reporddate,SerialNo) 
+	VALUES (17,71500,TO_DATE('10/30/2005','MM-DD-YYYY' ),'MNMJ7H6098');
+INSERT INTO REPAIRORDERS1(OrdNo,Odometer,reporddate,SerialNo) 
+	VALUES (18,15800,TO_DATE('11/1/2005','MM-DD-YYYY' ),'MVMN8974PP');
+INSERT INTO REPAIRORDERS1(OrdNo,Odometer,reporddate,SerialNo) 
+	VALUES (19,28525,TO_DATE('11/2/2005','MM-DD-YYYY' ),'POIU980PLL');
+INSERT INTO REPAIRORDERS1(OrdNo,Odometer,reporddate,SerialNo) 
+	VALUES (20,32560,TO_DATE('11/2/2005','MM-DD-YYYY' ),'QWSA870976');
+INSERT INTO REPAIRORDERS1(OrdNo,Odometer,reporddate,SerialNo) 
+	VALUES (21,72700,TO_DATE('11/5/2005','MM-DD-YYYY' ),'IOMEQ54397');
+INSERT INTO REPAIRORDERS1(OrdNo,Odometer,reporddate,SerialNo) 
+	VALUES (22,18900,TO_DATE('11/8/2005','MM-DD-YYYY' ),'POOL98T90P');
+INSERT INTO REPAIRORDERS1(OrdNo,Odometer,reporddate,SerialNo) 
+	VALUES (23,46590,TO_DATE('11/8/2005','MM-DD-YYYY' ),'SWQW345RT6');
+INSERT INTO REPAIRORDERS1(OrdNo,Odometer,reporddate,SerialNo) 
+	VALUES (24,34800,TO_DATE('11/12/2005','MM-DD-YYYY' ),'TGVYY76R43');
+INSERT INTO REPAIRORDERS1(OrdNo,Odometer,reporddate,SerialNo) 
+	VALUES (25,61800,TO_DATE('11/15/2005','MM-DD-YYYY' ),'JHMEC3348H');
+INSERT INTO REPAIRORDERS1(OrdNo,Odometer,reporddate,SerialNo) 
+	VALUES (26,55000,TO_DATE('11/20/2005','MM-DD-YYYY' ),'V121BHD481');
+INSERT INTO REPAIRORDERS1(OrdNo,Odometer,reporddate,SerialNo) 
+	VALUES (27,30800,TO_DATE('11/22/2005','MM-DD-YYYY' ),'WWQAA452P0');
+INSERT INTO REPAIRORDERS1(OrdNo,Odometer,reporddate,SerialNo) 
+	VALUES (28,17600,TO_DATE('11/22/2005','MM-DD-YYYY' ),'XCVY760PIQ');
+INSERT INTO REPAIRORDERS1(OrdNo,Odometer,reporddate,SerialNo) 
+	VALUES (29,20600,TO_DATE('11/25/2005','MM-DD-YYYY' ),'AZXS230I87');
+INSERT INTO REPAIRORDERS1(OrdNo,Odometer,reporddate,SerialNo) 
+	VALUES (30,22590,TO_DATE('11/27/2005','MM-DD-YYYY' ),'BHGY08631Q');
+INSERT INTO REPAIRORDERS1(OrdNo,Odometer,reporddate,SerialNo) 
+	VALUES (31,23000,TO_DATE('2/3/2006','MM-DD-YYYY' ),'BHGY08631Q');
+INSERT INTO REPAIRORDERS1(OrdNo,Odometer,reporddate,SerialNo) 
+	VALUES (32,15000,TO_DATE('12/1/2005','MM-DD-YYYY' ),'BHGY08631Q');
 
 
 /* Insert data into PARTSUSED1 */
@@ -392,7 +393,3 @@ INSERT INTO PARTSUSED1(OrdNo,PartNo,QtyUsed)
 	VALUES (30,6,6);
 INSERT INTO PARTSUSED1(OrdNo,PartNo,QtyUsed) 
 	VALUES (32,8,2);
-
-
-
-
